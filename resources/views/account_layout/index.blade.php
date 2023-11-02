@@ -193,7 +193,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							Add</a>
 						</li>
                         <li>
-							<a href="ecommerce_products.html">
+							<a href="{{route('user.list')}}">
 							<i class="icon-handbag"></i>
 							View</a>
 						</li>

@@ -31,6 +31,7 @@ Route::middleware(['auth:user'])->group(function () {
     Route::prefix('user')->name('user.')->group(function(){
         Route::get('/create',[UserController::class,'create'])->name('create');
         Route::post('/add',[UserController::class,'add'])->name('add');
+        Route::get('/list',[UserController::class,'list'])->name('list');
     });
     //-----------------------------User Module----------------------------
 

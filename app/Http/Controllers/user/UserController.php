@@ -70,6 +70,7 @@ class UserController extends Controller
             'cpassword'=>'required|min:4|max:30|same:password',
         ]);
         //exit;
+
         $UserRegister = new User();
         $UserRegister->name = $request->name;
         $UserRegister->email = $request->email;
@@ -77,11 +78,6 @@ class UserController extends Controller
         $UserRegister->user_type = $request->user_type;
         $UserRegister->password = Hash::make($request->password) ;
         $UserRegister->save();
-
-
-
-
-
 
         if($UserRegister){
             return redirect('/')->with('success', 'User registration successfully done...');
