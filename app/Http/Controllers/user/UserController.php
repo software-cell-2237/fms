@@ -28,7 +28,9 @@ class UserController extends Controller
     }
 
     public function create(){
+
         return view('accounts.users.create_user');
+
     }
 
     public function add(Request $request){
@@ -85,6 +87,13 @@ class UserController extends Controller
             return redirect('/')->with('fail', 'Something wrong ');
         }
 
+    }
+
+    public function list(){
+        $getUsers=User::all();
+        // print_r($getUsers);
+        // exit;
+        return view('accounts.users.show_user', compact('getUsers'));
     }
 
 
