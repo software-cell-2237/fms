@@ -24,7 +24,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        return view('accounts.users.module.create_module');
     }
 
     /**

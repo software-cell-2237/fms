@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Definations\DefController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\NewAccountController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,13 +29,29 @@ Route::middleware(['auth:user'])->group(function () {
 
     Route::view('/home','accounts.dashboard.home')->name('home');
 
-    //-----------------------------User Module----------------------------
+    //-----------------------------User----------------------------
     Route::prefix('user')->name('user.')->group(function(){
         Route::get('/create',[UserController::class,'create'])->name('create');
         Route::post('/add',[UserController::class,'add'])->name('add');
         Route::get('/list',[UserController::class,'list'])->name('list');
     });
-    //-----------------------------User Module----------------------------
+    //-----------------------------User----------------------------
+
+    //-----------------------------Module----------------------------
+    Route::prefix('module')->name('module.')->group(function(){
+        Route::get('/create',[ModuleController::class,'create'])->name('create');
+        Route::post('/add',[ModuleController::class,'add'])->name('add');
+        Route::get('/list',[ModuleController::class,'list'])->name('list');
+    });
+    //-----------------------------Module----------------------------
+
+    //-----------------------------Roles----------------------------
+    Route::prefix('role')->name('role.')->group(function(){
+        Route::get('/create',[RoleController::class,'create'])->name('create');
+        Route::post('/add',[RoleController::class,'add'])->name('add');
+        Route::get('/list',[RoleController::class,'list'])->name('list');
+    });
+    //-----------------------------Roles----------------------------
 
     //-----------------------------Companies Module----------------------------
     Route::prefix('company')->name('company.')->group(function(){
