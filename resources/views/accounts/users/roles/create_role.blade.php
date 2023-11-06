@@ -23,9 +23,6 @@
 			</div>
 			<!-- /.modal -->
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-			<!-- BEGIN STYLE CUSTOMIZER -->
-
-			<!-- END STYLE CUSTOMIZER -->
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
 			Dashboard <small>dashboard & statistics</small>

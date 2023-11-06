@@ -20,9 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest:user'])->group(function () {
         Route::view('/','authentication.login')->name('login');
+        Route::view('/job','authentication.job.login')->name('job');
+        Route::view('/ums','authentication.ums.login')->name('ums');
+        Route::post('check',[UserController::class,'check'])->name('check');
         Route::view('/register','dashboard.user.register')->name('register');
         Route::post('signup',[UserController::class,'signup'])->name('signup');
-        Route::post('check',[UserController::class,'check'])->name('check');
+        Route::view('/accounts','authentication.accounts.login')->name('accounts');
 });
 
 Route::middleware(['auth:user'])->group(function () {

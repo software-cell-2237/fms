@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title>UVAS</title>
+<title>University Management System</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="" name="description"/>
@@ -63,7 +63,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 </a>
 
-    <h3 style="color:white"><b>UVAS</b></h3>
+    <h4 style="color:white"><b>University Management System</b></h4>
 
 
 </div>
@@ -157,8 +157,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		</div>
 		<div class="create-account">
 			<p>
-				 <!--Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn">
-				Create an account </a>-->
+				 Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn">
+				Create an account </a>
 			</p>
 		</div>
 	</form>
