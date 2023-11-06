@@ -193,6 +193,11 @@ License: You must have a valid license purchased only from themeforest(the above
 							Add User</a>
 						</li>
                         <li>
+							<a href="{{route('user.list')}}">
+							<i class="icon-handbag"></i>
+							View User</a>
+						</li>
+                        <li>
 							<a href="{{route('module.create')}}">
 							<i class="icon-handbag"></i>
 							Add Module</a>
@@ -201,11 +206,6 @@ License: You must have a valid license purchased only from themeforest(the above
 							<a href="{{route('role.create')}}">
 							<i class="icon-handbag"></i>
 							Add Roles</a>
-						</li>
-                        <li>
-							<a href="{{route('user.list')}}">
-							<i class="icon-handbag"></i>
-							View User</a>
 						</li>
 					</ul>
 				</li>

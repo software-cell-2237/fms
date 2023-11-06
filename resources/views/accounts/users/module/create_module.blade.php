@@ -81,7 +81,7 @@
                   <!--body area-->
                   <div class="portlet-body form">
                   <!---  Form Start -->
-                      <form name="form" action="{{route('user.add')}}" method="post" enctype="multipart/form-data" >
+                      <form name="form" action="{{route('module.add')}}" method="post" enctype="multipart/form-data" >
                         @csrf
                           <div class="form-body">
                                   <div class="alert alert-danger display-hide">

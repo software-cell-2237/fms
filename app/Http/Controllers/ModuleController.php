@@ -35,7 +35,13 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+    }
+
+    public function add(Request $request)
+    {
+        echo "module";
+        exit;
     }
 
     /**
