@@ -140,8 +140,63 @@
 
                   </div>
               </div>
+              <!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>View Modules
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover" id="sample_6">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>URL Title</th>
+                            <th>URL</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $sr_no = 1;
+                        @endphp
+                    @foreach($GetModule as $row_module)
+                        <tr>
+                            <td>{{$sr_no++}}</td>
+                            <td>{{$row_module->module_title}}</td>
+                            <td>{{$row_module->module_url}}</td>
+                            <td>
+                                {{-- <a href="{{url('update/'.$row_module->module_id)}}">Update</a> | --}}
+                                <a href="{{url('module/delete/'.$row_module->module_id)}}">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
           </div>
 			<!-- END DASHBOARD STATS -->
+
 
 
 @endsection

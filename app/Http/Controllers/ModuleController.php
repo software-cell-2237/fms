@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ModuleController extends Controller
 {
     /**
@@ -24,7 +24,9 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('accounts.users.module.create_module');
+        $GetModule=Module::all();
+
+        return view('accounts.users.module.create_module', compact('GetModule'));
     }
 
     /**
@@ -38,10 +40,34 @@ class ModuleController extends Controller
 
     }
 
+    /**
+     * Add a newly Module resource in add.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function add(Request $request)
     {
-        echo "module";
-        exit;
+        $request->validate([
+            'module_title'=>'required',
+            'module_url'=>'required',
+        ]);
+
+        //$ldate = date('m-d-Y');
+
+        $DefModule = new Module();
+        $DefModule->module_title = $request->module_title;
+        $DefModule->module_url = $request->module_url;
+        $DefModule->added_date = date('m-d-Y');
+        $DefModule->added_by = Auth::user()->email;
+        $DefModule->server_ip = $_SERVER['REMOTE_ADDR'];
+        $DefModule->save();
+
+        if($DefModule){
+            return redirect()->back()->with('success', 'Module Add successfully...');
+        }else{
+            return redirect()->back()->with('fail', 'Something wrong ');
+        }
     }
 
     /**
@@ -84,8 +110,10 @@ class ModuleController extends Controller
      * @param  \App\Models\Module  $module
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Module $module)
+    public function delete(Request $request, $module_id)
     {
-        //
+       Module::where('module_id', $module_id)->delete();
+
+       return redirect()->back()->with('success', 'Module Deleted Successfully...');
     }
 }

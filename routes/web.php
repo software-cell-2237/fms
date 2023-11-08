@@ -45,6 +45,8 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/create',[ModuleController::class,'create'])->name('create');
         Route::post('/add',[ModuleController::class,'add'])->name('add');
         Route::get('/list',[ModuleController::class,'list'])->name('list');
+        Route::get('/update/{module_id}',[ModuleController::class,'update'])->name('update');
+        Route::get('/delete/{module_id}',[ModuleController::class,'delete'])->name('delete');
     });
     //-----------------------------Module----------------------------
 
@@ -53,6 +55,7 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/create',[RoleController::class,'create'])->name('create');
         Route::post('/add',[RoleController::class,'add'])->name('add');
         Route::get('/list',[RoleController::class,'list'])->name('list');
+        Route::get('/delete/{role_id}',[RoleController::class,'delete'])->name('delete');
     });
     //-----------------------------Roles----------------------------
 

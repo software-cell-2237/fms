@@ -78,7 +78,7 @@
                   <!--body area-->
                   <div class="portlet-body form">
                   <!---  Form Start -->
-                      <form name="form" action="{{route('user.add')}}" method="post" enctype="multipart/form-data" >
+                      <form name="form" action="{{route('role.add')}}" method="post" enctype="multipart/form-data" >
                         @csrf
                           <div class="form-body">
                                   <div class="alert alert-danger display-hide">
@@ -105,9 +105,9 @@
                                     <div class="col-md-9">
                                         <div class="checkbox-list">
                                             <label class="checkbox-inline">
-                                            <input type="checkbox" name="c" id="" value="1"> Read </label>
+                                            <input type="checkbox" name="c" id="" value="1"> Create </label>
                                             <label class="checkbox-inline">
-                                            <input type="checkbox" name="r" id="" value="1"> Write </label>
+                                            <input type="checkbox" name="r" id="" value="1"> Read </label>
                                             <label class="checkbox-inline">
                                             <input type="checkbox" name="u" id="" value="1"> Update </label>
                                             <label class="checkbox-inline">
@@ -146,6 +146,90 @@
 
                   </div>
               </div>
+               <!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>View Role
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover" id="sample_6">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Role</th>
+                            <th>Create</th>
+                            <th>Read</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $sr_no = 1;
+                        @endphp
+                    @foreach($GetRole as $row_role)
+                        <tr>
+                            <td>{{$sr_no++}}</td>
+                            <td>{{$row_role->role_name}}</td>
+                            <td align="center">
+                                @if($row_role->c !='')
+                                    <img src="{{asset('layout/assets/custom_img/tick.png')}}" alt="" width="30px" height="30px">
+                                @else
+                                    <img src="{{asset('layout/assets/custom_img/cross.jpg')}}" alt="" width="30px" height="30px">
+                                @endif
+                            </td>
+                            <td align="center">
+                                @if($row_role->r !='')
+                                    <img src="{{asset('layout/assets/custom_img/tick.png')}}" alt="" width="30px" height="30px">
+                                @else
+                                    <img src="{{asset('layout/assets/custom_img/cross.jpg')}}" alt="" width="30px" height="30px">
+                                @endif
+                            </td>
+                            <td align="center">
+                                @if($row_role->u !='')
+                                    <img src="{{asset('layout/assets/custom_img/tick.png')}}" alt="" width="30px" height="30px">
+                                @else
+                                    <img src="{{asset('layout/assets/custom_img/cross.jpg')}}" alt="" width="30px" height="30px">
+                                @endif
+                            </td>
+                            <td align="center">
+                                @if($row_role->d !='')
+                                    <img src="{{asset('layout/assets/custom_img/tick.png')}}" alt="" width="30px" height="30px">
+                                @else
+                                    <img src="{{asset('layout/assets/custom_img/cross.jpg')}}" alt="" width="30px" height="30px">
+                                @endif
+                            </td>
+                            <td>
+                               <a href="{{url('role/delete/'.$row_role->role_id)}}">Delete</a>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
           </div>
 			<!-- END DASHBOARD STATS -->
 
