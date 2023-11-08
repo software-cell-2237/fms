@@ -37,6 +37,8 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/create',[UserController::class,'create'])->name('create');
         Route::post('/add',[UserController::class,'add'])->name('add');
         Route::get('/list',[UserController::class,'list'])->name('list');
+        Route::get('/create_registration',[UserController::class,'create_registration'])->name('create_registration');
+        Route::post('/registration',[UserController::class,'registration'])->name('registration');
     });
     //-----------------------------User----------------------------
 
@@ -58,6 +60,8 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/delete/{role_id}',[RoleController::class,'delete'])->name('delete');
     });
     //-----------------------------Roles----------------------------
+
+
 
     //-----------------------------Companies Module----------------------------
     Route::prefix('company')->name('company.')->group(function(){

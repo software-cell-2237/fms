@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Module;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -95,6 +97,39 @@ class UserController extends Controller
         // exit;
         return view('accounts.users.show_user', compact('getUsers'));
     }
+
+
+    public function create_registration(){
+        $GetUser=User::all();
+        $GetModule=Module::all();
+        $GetRole=Role::all();
+
+        return view('accounts.users.user_registration', compact('GetUser','GetModule','GetRole'));
+    }
+
+    public function registration(Request $request){
+        $request->validate([
+            'user'=>'required',
+            'module'=>'required',
+            'role'=>'required',
+        ]);
+        //exit;
+
+        $UserRegister = new User();
+        $UserRegister->name = $request->name;
+        $UserRegister->email = $request->email;
+        $UserRegister->cnic = $request->cnic;
+        $UserRegister->user_type = $request->user_type;
+        $UserRegister->password = Hash::make($request->password) ;
+        $UserRegister->save();
+
+        if($UserRegister){
+            return redirect('/')->with('success', 'User registration successfully done...');
+        }else{
+            return redirect('/')->with('fail', 'Something wrong ');
+        }
+    }
+
 
 
     public function logout(){

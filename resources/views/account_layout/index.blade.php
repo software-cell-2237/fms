@@ -207,6 +207,12 @@ License: You must have a valid license purchased only from themeforest(the above
 							<i class="icon-handbag"></i>
 							Add Roles</a>
 						</li>
+
+                        <li>
+							<a href="{{route('user.create_registration')}}">
+							<i class="icon-handbag"></i>
+							User Registration</a>
+						</li>
 					</ul>
 				</li>
                 @endif
