@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Module;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserRegisterModule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -115,23 +116,21 @@ class UserController extends Controller
         ]);
         //exit;
 
-        $UserRegister = new User();
-        $UserRegister->name = $request->name;
-        $UserRegister->email = $request->email;
-        $UserRegister->cnic = $request->cnic;
-        $UserRegister->user_type = $request->user_type;
-        $UserRegister->password = Hash::make($request->password) ;
+        $UserRegister = new UserRegisterModule();
+        $UserRegister->user_id = $request->user;
+        $UserRegister->module_id = $request->module;
+        $UserRegister->role_id = $request->role;
+        $UserRegister->added_date = date('m-d-Y');
+        $UserRegister->added_by = Auth::user()->email;
+        $UserRegister->server_ip = $_SERVER['REMOTE_ADDR'];
         $UserRegister->save();
 
         if($UserRegister){
-            return redirect('/')->with('success', 'User registration successfully done...');
+            return redirect()->back()->with('success', 'User registration successfully done...');
         }else{
-            return redirect('/')->with('fail', 'Something wrong ');
+            return redirect()->back()->with('fail', 'Something wrong ');
         }
     }
-
-
-
     public function logout(){
 
         Auth::guard('user')->logout();
