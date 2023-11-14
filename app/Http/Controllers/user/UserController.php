@@ -10,6 +10,7 @@ use App\Models\UserRegisterModule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -101,11 +102,20 @@ class UserController extends Controller
 
 
     public function create_registration(){
-        $GetUser=User::all();
+        $GetUser=User::where('user_type', '<>',  1)->get();
         $GetModule=Module::all();
         $GetRole=Role::all();
 
-        return view('accounts.users.user_registration', compact('GetUser','GetModule','GetRole'));
+        $getUserRegistration = DB::table('user_register_modules')
+                            ->join('users', 'user_register_modules.user_id', '=', 'users.user_id')
+                            ->join('modules', 'user_register_modules.module_id', '=', 'modules.module_id')
+                            ->join('roles', 'user_register_modules.role_id', '=', 'roles.role_id')
+                            ->get();
+                            // echo"<pre>";
+                            // print_r($getUserRegistration);
+                            // exit;
+
+        return view('accounts.users.user_registration', compact('GetUser','GetModule','GetRole', 'getUserRegistration'));
     }
 
     public function registration(Request $request){
@@ -136,5 +146,14 @@ class UserController extends Controller
         Auth::guard('user')->logout();
 
         return redirect()->route('login');
+    }
+
+
+    public function registration_delete($urm_id){
+
+        UserRegisterModule::where('urm_id', $urm_id)->delete();
+
+       return redirect()->back()->with('success', 'Registration Deleted Successfully...');
+
     }
 }

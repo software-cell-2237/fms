@@ -3,6 +3,7 @@
 use App\Http\Controllers\Definations\DefController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\NewAccountController;
+use App\Http\Controllers\PreUserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,14 @@ Route::middleware(['auth:user'])->group(function () {
 
     Route::view('/home','accounts.dashboard.home')->name('home');
 
+    //-----------------------------Pre User----------------------------
+    Route::prefix('pre_user')->name('pre_user.')->group(function(){
+        Route::get('/create',[PreUserController::class,'create'])->name('create');
+        Route::post('/add',[PreUserController::class,'add'])->name('add');
+        Route::get('/list',[PreUserController::class,'list'])->name('list');
+    });
+    //-----------------------------Pre User----------------------------
+
     //-----------------------------User----------------------------
     Route::prefix('user')->name('user.')->group(function(){
         Route::get('/create',[UserController::class,'create'])->name('create');
@@ -39,6 +48,8 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/list',[UserController::class,'list'])->name('list');
         Route::get('/create_registration',[UserController::class,'create_registration'])->name('create_registration');
         Route::post('/registration',[UserController::class,'registration'])->name('registration');
+        Route::get('/registration_delete/{urm_id}',[UserController::class,'registration_delete'])->name('registration_delete');
+
     });
     //-----------------------------User----------------------------
 

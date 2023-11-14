@@ -102,7 +102,7 @@
                                           <option value="{{$row_user->user_id}}">{{$row_user->name}}</option>
                                           @endforeach
                                       </select>
-                                      <span class="help-block">
+                                      <span class="help-block" style="color: red">
                                         @error('user')
                                            {{$message}}
                                         @enderror
@@ -118,7 +118,7 @@
                                         <option value="{{$row_module->module_id}}">{{$row_module->module_title}}</option>
                                         @endforeach
                                     </select>
-                                    <span class="help-block">
+                                    <span class="help-block" style="color: red">
                                       @error('module')
                                          {{$message}}
                                       @enderror
@@ -134,17 +134,18 @@
                                         <option value="{{$row_role->role_id}}">{{$row_role->role_name}}</option>
                                         @endforeach
                                     </select>
-                                    <span class="help-block">
+                                    <span class="help-block" style="color: red">
                                       @error('role')
                                          {{$message}}
                                       @enderror
                                     </span>
                                 </div>
-                                <div class="form-group ">
+
+                                <div class="form-group">
                                         <label class="control-label"><span class="required">
                                         </span>
                                         </label>
-                                            <textarea name="description" id="description"  class="form-control validate[required]" placeholder="Enter if any Description"></textarea>
+                                            <textarea name="description" id="description"  class="form-control validate[required]" placeholder="Description"></textarea>
                                         <span class="help-block">
                                     @error('description')
                                         {{$message}}
@@ -154,8 +155,8 @@
 
                                   <div class="form-actions">
                                   <div class="btn-set pull-left">
-                                      <button type="submit" class="btn green">Save</button>
-                                      <button type="reset" class="btn blue">Reset</button>
+                                      <button type="submit" class="btn green">Submit</button>
+                                      {{-- <button type="reset" class="btn blue">Reset</button> --}}
                                   </div>
                                   <!--<div class="btn-set pull-right">
                                       <button type="button" class="btn default">Action 1</button>
@@ -168,6 +169,64 @@
                       </div>
                   </div>
               </div>
-          </div>
-			<!-- END DASHBOARD STATS -->
+               <!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>View User Registration
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover" id="sample_6">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>User</th>
+                            <th>Module</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $sr_no = 1;
+                            //echo"<pre>";
+                            //print_r($getUserRegistration);
+
+                        @endphp
+                    @foreach($getUserRegistration as $row_registration)
+                        <tr>
+                            <td>{{$sr_no++}}</td>
+                            <td>{{$row_registration->name}}</td>
+                            <td>{{$row_registration->module_title}}</td>
+                            <td>{{$row_registration->role_name}}</td>
+                            <td>
+                               <a href="{{url('user/registration_delete/'.$row_registration->urm_id)}}">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+</div>
+<!-- END DASHBOARD STATS -->
 @endsection
