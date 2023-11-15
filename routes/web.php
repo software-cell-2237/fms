@@ -35,7 +35,6 @@ Route::middleware(['auth:user'])->group(function () {
 
     //-----------------------------Pre User----------------------------
     Route::prefix('pre_user')->name('pre_user.')->group(function(){
-        Route::get('/create',[PreUserController::class,'create'])->name('create');
         Route::post('/add',[PreUserController::class,'add'])->name('add');
         Route::get('/list',[PreUserController::class,'list'])->name('list');
     });
@@ -49,7 +48,7 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/create_registration',[UserController::class,'create_registration'])->name('create_registration');
         Route::post('/registration',[UserController::class,'registration'])->name('registration');
         Route::get('/registration_delete/{urm_id}',[UserController::class,'registration_delete'])->name('registration_delete');
-
+        Route::get('/delete/{user_id}',[UserController::class,'user_delete'])->name('user_delete');
     });
     //-----------------------------User----------------------------
 

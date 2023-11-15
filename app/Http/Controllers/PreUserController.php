@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PreUser;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PreUserController extends Controller
 {
@@ -33,9 +35,34 @@ class PreUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function add(Request $request){
+
+        exit;
+
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users,email',
+            'cnic'=>'required',
+            'user_type'=>'required',
+            'password'=>'required|min:4|max:30',
+            'cpassword'=>'required|min:4|max:30|same:password',
+        ]);
+
+        $PreUser = new PreUser();
+        $PreUser->name = $request->name;
+        $PreUser->email = $request->email;
+        $PreUser->cnic = $request->cnic;
+        $PreUser->user_type = $request->user_type;
+        $PreUser->password = Hash::make($request->password) ;
+        $PreUser->save();
+
+
+        if($PreUser){
+            return redirect()->back()->with('success', 'User registration successfully...');
+        }else{
+            return redirect()->back()->with('fail', 'Something wrong ');
+        }
+
     }
 
     /**

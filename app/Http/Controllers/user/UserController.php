@@ -148,6 +148,13 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
+    public function user_delete($user_id){
+
+        User::where('user_id', $user_id)->delete();
+
+       return redirect()->back()->with('success', 'User Deleted Successfully...');
+
+    }
 
     public function registration_delete($urm_id){
 
